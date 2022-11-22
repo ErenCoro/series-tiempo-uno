@@ -40,9 +40,14 @@ def detrend(model_weights, features, label):
 
 
 def covariance(serie, lag):
+    N = np.size(serie)
     mean = np.mean(serie)
-    autocovariance = np.sum((serie[lag:]-mean)*(serie[:len(serie)-lag]-mean)) / (len(serie)-lag)
-    return autocovariance
+    autoCov = 0
+
+    for i in np.arange(0, N-lag):
+        autoCov += ((serie[i+lag])-mean)*(serie[i]-mean)
+
+    return autoCov/(N-1)
 
 
 def primer_endpoint(data_url):
