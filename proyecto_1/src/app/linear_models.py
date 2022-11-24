@@ -44,7 +44,7 @@ def covariance(serie, lag):
     mean = np.mean(serie)
     autoCov = 0
 
-    for i in np.arange(0, N-lag):
+    for i in np.arange(0, N-lag + 1):
         autoCov += ((serie[i+lag])-mean)*(serie[i]-mean)
 
     return autoCov/(N-1)
